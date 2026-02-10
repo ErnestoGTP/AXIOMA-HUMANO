@@ -1,0 +1,273 @@
+backend:
+  name: git-gateway
+  branch: main
+  squash_merges: true
+
+publish_mode: editorial_workflow
+
+media_folder: "public/images"
+public_folder: "/images"
+
+site_url: https://axioma-humano.netlify.app
+logo_url: https://axioma-humano.netlify.app/assets/logo.png
+
+i18n:
+  structure: single_file
+  locales: [es]
+  default_locale: es
+
+collections:
+  # CONFIGURACIÓN GENERAL DEL SITIO
+  - name: "configuracion"
+    label: "⚙️ Configuración General"
+    editor:
+      preview: false
+    files:
+      - file: "content/config.json"
+        label: "Información de Contacto"
+        name: "contacto"
+        fields:
+          - label: "Teléfono / WhatsApp"
+            name: "telefono"
+            widget: "string"
+            default: "+52 1 662 651 6705"
+          - label: "Email"
+            name: "email"
+            widget: "string"
+            default: "info@axiomahumano.com"
+          - label: "Ubicación"
+            name: "ubicacion"
+            widget: "string"
+            default: "Hermosillo, Sonora, México"
+          - label: "URL de Calendly"
+            name: "calendly_url"
+            widget: "string"
+            default: "https://calendly.com/ramitaptraining/coaching-pnl-virtual"
+          - label: "Horario - Lunes a Viernes"
+            name: "horario_semana"
+            widget: "string"
+            default: "9:00 AM - 8:00 PM"
+          - label: "Horario - Sábados"
+            name: "horario_sabado"
+            widget: "string"
+            default: "10:00 AM - 4:00 PM"
+          - label: "Horario - Domingos"
+            name: "horario_domingo"
+            widget: "string"
+            default: "Cerrado"
+
+  # HERO - SECCIÓN PRINCIPAL
+  - name: "hero"
+    label: "🏠 Hero (Página Principal)"
+    editor:
+      preview: false
+    files:
+      - file: "content/hero.json"
+        label: "Contenido del Hero"
+        name: "hero"
+        fields:
+          - label: "Título Principal (línea 1)"
+            name: "titulo_1"
+            widget: "string"
+            default: "Reprograma tu"
+          - label: "Título Destacado (línea 1)"
+            name: "titulo_destacado_1"
+            widget: "string"
+            default: "Mente"
+          - label: "Título Principal (línea 2)"
+            name: "titulo_2"
+            widget: "string"
+            default: "Transforma tu"
+          - label: "Título Destacado (línea 2)"
+            name: "titulo_destacado_2"
+            widget: "string"
+            default: "Vida"
+          - label: "Subtítulo"
+            name: "subtitulo"
+            widget: "text"
+            default: "Descubre el poder de la PNL y la Neuro-semántica Integral. Sesiones personalizadas presenciales y virtuales para liberar tu potencial y alcanzar la excelencia personal."
+          - label: "Texto Botón Principal"
+            name: "boton_principal"
+            widget: "string"
+            default: "Sesión Exploratoria Gratis"
+          - label: "Texto Botón Secundario"
+            name: "boton_secundario"
+            widget: "string"
+            default: "Conoce Más"
+
+  # ESTADÍSTICAS
+  - name: "estadisticas"
+    label: "📊 Estadísticas"
+    editor:
+      preview: false
+    files:
+      - file: "content/estadisticas.json"
+        label: "Números del Hero"
+        name: "stats"
+        fields:
+          - label: "Estadística 1 - Número"
+            name: "stat1_numero"
+            widget: "string"
+            default: "500+"
+          - label: "Estadística 1 - Texto"
+            name: "stat1_texto"
+            widget: "string"
+            default: "Vidas Transformadas"
+          - label: "Estadística 2 - Número"
+            name: "stat2_numero"
+            widget: "string"
+            default: "10+"
+          - label: "Estadística 2 - Texto"
+            name: "stat2_texto"
+            widget: "string"
+            default: "Años de Experiencia"
+          - label: "Estadística 3 - Número"
+            name: "stat3_numero"
+            widget: "string"
+            default: "98%"
+          - label: "Estadística 3 - Texto"
+            name: "stat3_texto"
+            widget: "string"
+            default: "Clientes Satisfechos"
+
+  # SERVICIOS
+  - name: "servicios"
+    label: "🎯 Servicios"
+    folder: "content/servicios"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Título del Servicio"
+        name: "title"
+        widget: "string"
+      - label: "Descripción"
+        name: "description"
+        widget: "text"
+      - label: "Precio"
+        name: "price"
+        widget: "string"
+        default: "Desde $80"
+      - label: "Modalidad"
+        name: "modalidad"
+        widget: "select"
+        options: ["presencial", "virtual", "ambas"]
+        default: "ambas"
+      - label: "Características (una por línea)"
+        name: "features"
+        widget: "list"
+        field: { label: "Característica", name: "feature", widget: "string" }
+
+  # PRECIOS / PROGRAMAS
+  - name: "programas"
+    label: "💎 Programas y Precios"
+    folder: "content/programas"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Nombre del Programa"
+        name: "title"
+        widget: "string"
+      - label: "Descripción"
+        name: "description"
+        widget: "text"
+      - label: "Precio Mensual"
+        name: "price_monthly"
+        widget: "number"
+        value_type: "int"
+        min: 0
+      - label: "Precio Trimestral"
+        name: "price_quarterly"
+        widget: "number"
+        value_type: "int"
+        min: 0
+      - label: "¿Es el más popular?"
+        name: "popular"
+        widget: "boolean"
+        default: false
+      - label: "Características incluidas"
+        name: "features"
+        widget: "list"
+        fields:
+          - { label: "Característica", name: "text", widget: "string" }
+          - { label: "Incluida", name: "included", widget: "boolean", default: true }
+
+  # TESTIMONIOS
+  - name: "testimonios"
+    label: "💬 Testimonios"
+    folder: "content/testimonios"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Nombre"
+        name: "name"
+        widget: "string"
+      - label: "Resultado / Logro"
+        name: "role"
+        widget: "string"
+        default: "Superó la ansiedad social"
+      - label: "Foto"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Testimonio"
+        name: "text"
+        widget: "text"
+      - label: "Programa que tomó"
+        name: "program"
+        widget: "string"
+        default: "Programa Transformación"
+      - label: "Calificación (1-5)"
+        name: "rating"
+        widget: "number"
+        value_type: "int"
+        min: 1
+        max: 5
+        default: 5
+
+  # FOOTER
+  - name: "footer"
+    label: "📋 Footer"
+    editor:
+      preview: false
+    files:
+      - file: "content/footer.json"
+        label: "Contenido del Footer"
+        name: "footer"
+        fields:
+          - label: "Texto de descripción"
+            name: "descripcion"
+            widget: "text"
+            default: "Transformando vidas a través de la Programación Neurolingüística y Neuro-semántica Integral. Libera tu potencial y alcanza la excelencia personal."
+          - label: "Texto Newsletter"
+            name: "newsletter_texto"
+            widget: "string"
+            default: "Recibe tips de PNL, desarrollo personal y ofertas exclusivas."
+
+  # SEO / METADATOS
+  - name: "seo"
+    label: "🔍 SEO (Google)"
+    editor:
+      preview: false
+    files:
+      - file: "content/seo.json"
+        label: "Configuración SEO"
+        name: "seo"
+        fields:
+          - label: "Título del sitio"
+            name: "site_title"
+            widget: "string"
+            default: "Axioma Humano - Programación Neurolingüística y Neuro-semántica Integral"
+          - label: "Descripción para Google"
+            name: "site_description"
+            widget: "text"
+            default: "Transforma tu vida con Programación Neurolingüística y Neuro-semántica Integral. Coaching y talleres presenciales en Hermosillo, Sonora y virtuales."
+          - label: "Palabras clave (separadas por coma)"
+            name: "keywords"
+            widget: "string"
+            default: "PNL, coaching, programación neurolingüística, talleres, desarrollo personal, Hermosillo"
